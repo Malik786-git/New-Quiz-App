@@ -49,4 +49,21 @@ select{
     margin-top: 40px;
     color: rgb(10, 10, 66);
 }
-
+.questionContainer{
+    font-size: 20px;
+    width: 400px;
+    margin: 100px auto;
+}
+.questionContainer h3{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+.questionContainer 
+#next{
+    text-align: center;
+    padding: 10px 100px;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto;
+    font-weight: 800; 
+}
