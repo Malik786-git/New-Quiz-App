@@ -1,50 +1,65 @@
 const start = document.getElementById('startbtn');
 const container = document.getElementById('container');
-const next = document.getElementById('next');
 const subject = document.getElementById('subject');
+let counter = 0; // for next question generate.
 
-const updateQuiz = (data) => {
-   console.log(data[0].options[0]);
+
+const forNextQuestion = (next)=>{
+    next.onclick = ()=> {
+        startQuiz(counter);
+        counter++;
+    }
+}
+
+
+const updateQuiz = (data,counter) => {
+  
     container.innerHTML = `
     <div class="questionContainer">
 
-    <h3>${data[0].question}</h3>
-    <input type="radio" name="same">  ${data[0].options[0]}
+    <h3>${data[counter].question}</h3>
+    <input type="radio" name="same">  ${data[counter].options[0]}
     <br>
-    <input type="radio" name="same">  ${data[0].options[1]}
+    <input type="radio" name="same">  ${data[counter].options[1]}
     <br>
-    <input type="radio" name="same">  ${data[0].options[2]}
+    <input type="radio" name="same">  ${data[counter].options[2]}
     <br>
-    <input type="radio" name="same">  ${data[0].options[3]}
+    <input type="radio" name="same">  ${data[counter].options[3]}
     <br>
     <br>
     <button id="next">Next</button>
     </div>
      `;
-}
-
-
-const startQuiz = () => {
-
-    if (subject.value === 'cs') {
-
-        fetch('question.json')
-            .then(res => res.json())
-            .then(data => {
-                // console.log(data.cs);
-                updateQuiz(data.cs)
-        
-            });
-
-    } else {
-
-    
+    //  console.log(document.getElementById('next'));
+    const next = document.getElementById('next');
+    forNextQuestion(next);
     }
 
-}
 
+const startQuiz = (counter) => {
+
+    fetch('question.json')
+        .then(res => res.json())
+        .then(data => {
+            if (subject.value === 'cs') {
+                updateQuiz(data.cs,counter)
+            } else
+                if (subject.value === 'math') {
+                    updateQuiz(data.math, counter)
+                } else {
+                    updateQuiz(data.chem, counter)
+                }
+        });
+}
 
 
 start.onclick = () => {
-    startQuiz();
+    startQuiz(counter);
+    counter++;
 }
+
+// next.onclick = () => {
+//     // startQuiz(counter);
+//     console.log('next btn run');
+//     // counter++;
+// }
