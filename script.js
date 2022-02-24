@@ -38,7 +38,8 @@ const updateQuiz = (data,counter) => {
 
 const startQuiz = (counter) => {
 
-    fetch('question.json')
+    if (counter < 10) {
+        fetch('question.json')
         .then(res => res.json())
         .then(data => {
             if (subject.value === 'cs') {
@@ -50,6 +51,10 @@ const startQuiz = (counter) => {
                     updateQuiz(data.chem, counter)
                 }
         });
+    }else{
+        document.write('question end')
+    }
+   
 }
 
 
@@ -58,8 +63,3 @@ start.onclick = () => {
     counter++;
 }
 
-// next.onclick = () => {
-//     // startQuiz(counter);
-//     console.log('next btn run');
-//     // counter++;
-// }
