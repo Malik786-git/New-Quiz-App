@@ -30,7 +30,7 @@ const updateQuiz = (data,counter) => {
     <button id="next">Next</button>
     </div>
      `;
-    //  console.log(document.getElementById('next'));
+ 
     const next = document.getElementById('next');
     forNextQuestion(next);
     }
