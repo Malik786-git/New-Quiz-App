@@ -4,7 +4,13 @@ const subject = document.getElementById('subject');
 let counter = 0; // for next question generate.
 
 
-const forNextQuestion = (next)=>{
+const forNextQuestion = (next,options)=>{
+    
+    console.log(options[0]);
+   if (options[0].checked === true) {
+       console.log('hello option');
+   }
+
     next.onclick = ()=> {
         startQuiz(counter);
         counter++;
@@ -18,22 +24,29 @@ const updateQuiz = (data,counter) => {
     <div class="questionContainer">
 
     <h3>${data[counter].question}</h3>
-    <input type="radio" name="same">  ${data[counter].options[0]}
+    <input type="radio" name="same" id="option0">  ${data[counter].options[0]}
     <br>
-    <input type="radio" name="same">  ${data[counter].options[1]}
+    <input type="radio" name="same" id="option1">  ${data[counter].options[1]}
     <br>
-    <input type="radio" name="same">  ${data[counter].options[2]}
+    <input type="radio" name="same" id="option2">  ${data[counter].options[2]}
     <br>
-    <input type="radio" name="same">  ${data[counter].options[3]}
+    <input type="radio" name="same" id="option3">  ${data[counter].options[3]}
     <br>
     <br>
     <button id="next">Next</button>
     </div>
      `;
- 
-    const next = document.getElementById('next');
-    forNextQuestion(next);
-    }
+    
+     const next = document.getElementById('next');
+     const option0 = document.getElementById('option0');
+     const option1 = document.getElementById('option1');
+     const option2 = document.getElementById('option2');
+     const option3 = document.getElementById('option3');
+
+     const options = [option0, option1, option2, option3]
+    
+    forNextQuestion(next, options);
+}
 
 
 const startQuiz = (counter) => {
@@ -58,8 +71,10 @@ const startQuiz = (counter) => {
 }
 
 
+
 start.onclick = () => {
     startQuiz(counter);
     counter++;
 }
+
 
