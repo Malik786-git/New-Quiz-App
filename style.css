@@ -58,7 +58,7 @@ select{
     font-size: 25px;
     margin-bottom: 20px;
 }
-.questionContainer 
+/* .questionContainer  */
 #next{
     text-align: center;
     padding: 10px 100px;
@@ -66,4 +66,16 @@ select{
     display: block;
     margin: 0 auto;
     font-weight: 800; 
+}
+
+.error{
+    display: none;
+    color: rgb(133, 24, 24);
+    text-align: center;
+    margin-top: 5px;
+}
+.error.show{
+    display: block;
+    color: white;
+ 
 }

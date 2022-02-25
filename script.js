@@ -4,16 +4,22 @@ const subject = document.getElementById('subject');
 let counter = 0; // for next question generate.
 
 
-const forNextQuestion = (next,options)=>{
+const forNextQuestion = (next,options, errorMessage)=>{
     
     console.log(options[0]);
-   if (options[0].checked === true) {
-       console.log('hello option');
-   }
+  
 
     next.onclick = ()=> {
-        startQuiz(counter);
         counter++;
+        if (options[0].checked === true || options[1].checked === true ||
+            options[2].checked === true || options[3].checked === true  ) 
+        {
+            console.log('hello option');
+            startQuiz(counter);
+        }else{
+          errorMessage.className = '.error.show';
+        }
+
     }
 }
 
@@ -34,6 +40,7 @@ const updateQuiz = (data,counter) => {
     <br>
     <br>
     <button id="next">Next</button>
+    <small id='errorMessage' class='error'>plz select any one optoin</small>
     </div>
      `;
     
@@ -42,10 +49,11 @@ const updateQuiz = (data,counter) => {
      const option1 = document.getElementById('option1');
      const option2 = document.getElementById('option2');
      const option3 = document.getElementById('option3');
+     const errorMessage = document.getElementById('errorMessage');     
 
      const options = [option0, option1, option2, option3]
     
-    forNextQuestion(next, options);
+    forNextQuestion(next, options, errorMessage);
 }
 
 
