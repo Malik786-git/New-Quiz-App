@@ -4,9 +4,7 @@ const subject = document.getElementById('subject');
 let counter = 0; // for next question generate.
 
 
-const forNextQuestion = (next,options, errorMessage)=>{
-    
-    console.log(options[0]);
+const forNextQuestion = (next,options, errorMessage, data, counter)=>{
   
 
     next.onclick = ()=> {
@@ -14,7 +12,14 @@ const forNextQuestion = (next,options, errorMessage)=>{
         if (options[0].checked === true || options[1].checked === true ||
             options[2].checked === true || options[3].checked === true  ) 
         {
-            console.log('hello option');
+            for (let i in options) {
+                if (options[i].checked) {
+                    if (data[counter-1].answer === Number(i)) {
+                        console.log('correct answer');
+                    }
+                }
+            }
+            
             startQuiz(counter);
         }else{
           errorMessage.className = '.error.show';
@@ -53,7 +58,7 @@ const updateQuiz = (data,counter) => {
 
      const options = [option0, option1, option2, option3]
     
-    forNextQuestion(next, options, errorMessage);
+    forNextQuestion(next, options, errorMessage, data, counter);
 }
 
 
