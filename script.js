@@ -2,7 +2,7 @@ const start = document.getElementById('startbtn');
 const container = document.getElementById('container');
 const subject = document.getElementById('subject');
 let counter = 0; // for next question generate.
-
+let updateScore = 0;
 
 const forNextQuestion = (next,options, errorMessage, data, counter)=>{
   
@@ -15,16 +15,15 @@ const forNextQuestion = (next,options, errorMessage, data, counter)=>{
             for (let i in options) {
                 if (options[i].checked) {
                     if (data[counter-1].answer === Number(i)) {
-                        console.log('correct answer');
+                        updateScore++
                     }
                 }
             }
-            
             startQuiz(counter);
-        }else{
+        }else
+        {
           errorMessage.className = '.error.show';
         }
-
     }
 }
 
@@ -78,12 +77,20 @@ const startQuiz = (counter) => {
                 }
         });
     }else{
-        document.write('question end')
+        let result;
+        if (updateScore < 5) {
+            result = 'You Fail'
+        }else{
+            result = 'You Pass'
+        }
+         container.innerHTML = `
+         <h1 class="scoreTitle">Your Score </h1>
+         <h2 class="scoreNumbers">${updateScore} / 10</h2>
+         <h3 class="scoreNumbers">${result}</h3>
+         `
     }
    
 }
-
-
 
 start.onclick = () => {
     startQuiz(counter);
